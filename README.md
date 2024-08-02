@@ -1,5 +1,5 @@
 # sqlmapPassive
-sqlmap被动代理版
+sqlmap被动代理小插件
 
 ## 用法
 1. 下载原文件并打包；
