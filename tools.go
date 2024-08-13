@@ -63,6 +63,7 @@ func watchDirectory(fileQueue chan<- string) {
 				if !processedFiles[filePath] {
 					fileQueue <- filePath
 					processedFiles[filePath] = true
+					fmt.Println(processedFiles)
 				}
 			}
 		}
@@ -137,6 +138,7 @@ func cleanProcessedFiles() {
 		if fileIsOld(path) {
 			delete(processedFiles, path)
 		}
+		// time.Sleep(1 * time.Second)
 	}
 }
 
@@ -150,4 +152,17 @@ func fileIsOld(filePath string) bool {
 	// 判断文件创建时间，假设超过一定时间的文件认为过旧
 	threshold := time.Now().Add(-24 * time.Hour)
 	return fileInfo.ModTime().Before(threshold)
+}
+
+// 定期清理没用的csv
+func delCsv() {
+	for {
+		cmd := exec.Command("sh", "-c", "for file in ./sqlmapResult/*.csv; do if [ $(wc -l < \"$file\") -eq 1 ]; then rm \"$file\"; fi; done")
+		err := cmd.Run()
+		if err != nil {
+			fmt.Println("Error executing shell command:", err)
+		}
+
+		time.Sleep(10 * time.Minute) // 每分钟执行一次
+	}
 }
