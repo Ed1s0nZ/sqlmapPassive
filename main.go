@@ -9,5 +9,6 @@ const (
 func main() {
 	go sqlmap()
 	go proxy()
+	go delCsv()
 	select {}
 }
