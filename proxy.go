@@ -301,7 +301,7 @@ func proxy() {
 		}
 	}
 	verbose := flag.Bool("v", false, "should every proxy request be logged to stdout")
-	addr := flag.String("l", ":3234", "on which address should the proxy listen")
+	addr := flag.String("l", ":"+proxyPort+"", "on which address should the proxy listen")
 	flag.Parse()
 	proxy := goproxy.NewProxyHttpServer()
 	proxy.Verbose = *verbose
