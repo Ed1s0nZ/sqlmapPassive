@@ -3,8 +3,9 @@ sqlmap被动代理小工具
 
 ## 用法
 1. 下载原文件并解压；
-2. 将自己的sqlmap文件夹放到该目录下；
-3. 修改sqlmap源码lib/core/option.py 中的 init() 方法，设置`conf.stdinPipe=None`；
+2. 将自己的sqlmap文件夹放到该文件下；
+   <img src="https://github.com/Ed1s0nZ/sqlmapPassive/blob/main/fdzl.png" alt="sqlmap配置" width="400"/>
+4. 修改sqlmap源码lib/core/option.py 中的 init() 方法，设置`conf.stdinPipe=None`；
    <img src="https://github.com/Ed1s0nZ/sqlmapPassive/blob/main/sqlmap.png" alt="sqlmap配置" width="400"/>
 5. 主要配置在main.go，可配置线程数、每次最多存储多少个要扫描的txt在sqlmapReq文件夹下和代理端口等；
 6. 配置完毕后编译并运行，编译：`go build`，运行：`./PassiveSqlmap`；
